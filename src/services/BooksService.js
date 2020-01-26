@@ -1,0 +1,15 @@
+import axios from '../helpers/axios';
+import { API_ROOT, BOOKS } from '../constants';
+
+/**
+ * BooksService
+ * @type service
+ * @returns fetch all available Books at given endpoint 
+ */
+
+export async function BooksService() {
+    return await axios({
+        url: `${API_ROOT}${BOOKS.URL}.json`,
+        method: 'GET'
+    })
+}

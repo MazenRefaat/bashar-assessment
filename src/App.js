@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Header from './components/Header/Header';
+import EditBook from './views/EditBook/EditBook';
+import EditCategory from './views/EditCategory/EditCategory';
 
 const Home = React.lazy(() => import('./views/Home/Home'));
 
@@ -22,18 +24,21 @@ const App = () => {
     const _handleChangeEditMode = () => {
         setEditMode(!editMode);
     }
+
     return (
-    <EditContext.Provider value={{editMode: editMode, changeEditMode: _handleChangeEditMode}}>
-        <React.Suspense fallback={<div>Loading...</div>}>
-            <BrowserRouter>
-                <Header />
-                
-                <Switch>
-                    <Route path='/' component={Home} />
-                </Switch>
-            </BrowserRouter>
-        </React.Suspense>
-    </EditContext.Provider>
+        <EditContext.Provider value={{editMode: editMode, changeEditMode: _handleChangeEditMode}}>
+            <React.Suspense fallback={<div>Loading...</div>}>
+                <BrowserRouter>
+                    <Header />
+                    
+                    <Switch>
+                        <Route exact path='/' component={Home} />
+                        <Route path='/book/:id/edit' component={EditBook} />
+                        <Route path='/category/:id/edit' component={EditCategory} />
+                    </Switch>
+                </BrowserRouter>
+            </React.Suspense>
+        </EditContext.Provider>
     )
 }
 

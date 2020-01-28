@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 import { Link as rLink } from 'react-router-dom';
-import { greenColor } from '../../styles/Colors';
+import { darkBlueColor } from '../../styles/Colors';
 
 export const StyledHeader = styled.header`
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 25px;
-    background-color: ${greenColor};
+    background-color: ${darkBlueColor};
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
     box-shadow: 0 0 10px -1px #777;
@@ -38,9 +38,9 @@ export const EditButton = styled.a`
     font-size: 18px;
     font-weight: 300;
     text-decoration: none;
-    color: ${props => props.edit ? '#05ac72' : '#fff'  } ;
-    background-color: ${props => props.edit ? '#fff' : '#05ac72' } ;
+    color: ${props => props.edit ? '#456789' : '#fff'  } ;
+    background-color: ${props => props.edit ? '#fff' : '#456789' } ;
     padding: 10px 25px;
     border-radius: 8px;
-    box-shadow: 0 0 10px -1px #444;
+    box-shadow: 0 0 10px -5px #333;
 `

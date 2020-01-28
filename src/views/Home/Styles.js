@@ -10,9 +10,9 @@ export const Aside = styled.aside`
     flex-basis: 30%;
 `
 export const WidgetWrapper = styled.div`
-    margin-bottom: 15px;
+    margin-bottom: 25px;
 `
 
 export const Content = styled.section`
-    flex-basis: 60%;
+    flex-basis: 65%;
 `

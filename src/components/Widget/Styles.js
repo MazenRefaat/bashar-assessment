@@ -1,16 +1,16 @@
 import styled from 'styled-components';
-import { greenColor, mainColor } from '../../styles/Colors';
+import { darkBlueColor, mainColor } from '../../styles/Colors';
 import { Link as rLink } from 'react-router-dom';
 
 export const Wrapper = styled.section`
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
-    border: 1px solid ${greenColor};
+    border: 1px solid ${darkBlueColor};
     overflow: hidden;
     box-shadow: 0 0 10px -3px #999;
 `
 export const Header = styled.header`
-    background-color: ${greenColor};
+    background-color: ${darkBlueColor};
     padding: 10px 15px;
 `
 
@@ -32,6 +32,17 @@ export const UList = styled.ul`
 
 export const ListItem = styled.li`
     margin-bottom: 10px;
+`
+
+export const ListItemWrapper = styled.div`
+    display: flex;
+    justify-content: space-between;
+    height: 18px;
+`
+
+export const EditImg = styled.img`
+    width: 15px;
+    height: auto;
 `
 
 export const Link = styled(rLink)`

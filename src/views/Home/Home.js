@@ -3,6 +3,8 @@ import { Main, Aside, Content, WidgetWrapper } from './Styles';
 import Widget from '../../components/Widget/Widget';
 import { CategoriesService } from '../../services/CategoriesService';
 import { AuthorsService } from '../../services/AuthorsService';
+import { BooksService } from '../../services/BooksService';
+import ListView from '../../components/ListView/ListView';
 
 /**
  * Home
@@ -12,15 +14,26 @@ import { AuthorsService } from '../../services/AuthorsService';
  */
 
 const Home = () => {
+    const [books, setBooks] = useState([]);
     const [categories, setCategories] = useState([]);
     const [authors, setAuthors] = useState([]);
     useEffect(()=> {
         CategoriesService({limit: 5}).then(data => {
             setCategories(Object.values(data.data));
+        }).catch(e => {
+            console.log('error', e)
         });
 
         AuthorsService({limit: 5}).then(data => {
             setAuthors(Object.values(data.data));
+        }).catch(e => {
+            console.log('error', e)
+        });
+
+        BooksService({limit: 10}).then(data => {
+            setBooks(Object.values(data.data));
+        }).catch(e => {
+            console.log('error', e)
         });
     }, [])
 
@@ -37,7 +50,7 @@ const Home = () => {
             </Aside>
 
             <Content>
-                Books List
+                <ListView title="Books" type="book" data={books} />
             </Content>
         </Main>
     )

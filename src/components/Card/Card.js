@@ -1,10 +1,10 @@
-import React, { useState, useCallback } from 'react';
+import React from 'react';
 import { SkeletonWrapper } from '../../styles/Styles';
-import { Wrapper, Title, ImgWrapper, Img, Content, TitleWrapper, DescriptionWrapper, Description, NavLink, EditImg } from './Styles';
-import bookImg from '../../assets/book_fallback.png';
+import { Wrapper, Title, ImgWrapper, Content, TitleWrapper, DescriptionWrapper, Description, NavLink, EditImg } from './Styles';
 import { EditContext } from '../../App';
 import editIcon from '../../assets/edit_icon.svg';
 import { Link } from 'react-router-dom';
+import Image from '../Image/Image';
 
 /**
 * Card
@@ -15,12 +15,6 @@ import { Link } from 'react-router-dom';
 */
 
 const Card = (props) => {
-    const [imgStatus, setImageStatus] = useState('loading');
-
-    const _handleImgStatusChange = useCallback((status) => {
-        setImageStatus(status)
-    },[]);
-
     return(
         <EditContext.Consumer>
             {({editMode}) => (
@@ -31,22 +25,7 @@ const Card = (props) => {
                     <NavLink to={`/${props.type}/${props.item.id}`} />
                 }
                 <ImgWrapper>
-                    <Img
-                        src={imgStatus === 'loadError' ? bookImg : props.item.image } 
-                        title={props.item.title} 
-                        alt={props.item.title} 
-                        onError={
-                            () => _handleImgStatusChange('loadError')
-                        }
-                        onLoad={
-                            () => _handleImgStatusChange('loaded')
-                        }
-                    /> 
-                    {
-                        imgStatus === 'loading'
-                        &&
-                        <SkeletonWrapper />
-                    }
+                    <Image src={props.item.image} title={props.item.title}/>
                 </ImgWrapper>
 
                 <Content>

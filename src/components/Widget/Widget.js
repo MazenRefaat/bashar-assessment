@@ -1,8 +1,7 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Wrapper, Header, Content, Title, UList, Link, ListItem, EditImg, ListItemWrapper } from './Styles';
-import { EditContext } from '../../App';
-import editIcon from '../../assets/edit_icon.svg';
+import { Wrapper, Header, Content, Title, UList, Link, ListItem, ListItemWrapper } from './Styles';
+import { FetchDataService } from '../../services/DataService';
 
 /**
 * Widget
@@ -11,44 +10,43 @@ import editIcon from '../../assets/edit_icon.svg';
 * @param {object} props props data to be rendered in widget
 * @returns Widget component
 */
-const Widget = (props) => (
-    
-    <EditContext.Consumer>
-        {({editMode}) => (
-            <Wrapper>
-                <Header>
-                    <Title>
-                        {props.title}
-                    </Title>
-                </Header>
+const Widget = (props) => {
+    const [items, setItems] = useState([])
 
-                <Content>
-                    <UList>
-                        {
-                            props.data.map((item, key)=> (
-                                <ListItem key={key}>
-                                    <ListItemWrapper>
-                                        <Link to={`/${props.type}/${item.id}`} >
-                                            {item.name}
-                                        </Link>
+    useEffect(()=> {
+        FetchDataService({type: props.title.toLowerCase(), limit: 5}).then(res => {
+            setItems(Object.values(res.data))
+        }).catch(e => {
+            console.log('error', e);
+        })
+    }, [props.title])
 
-                                        {
-                                            editMode
-                                            &&
-                                            <Link to={`/${props.type}/${item.id}/edit`}>
-                                                <EditImg src={editIcon} alt='Edit' title='Edit' />
-                                            </Link>
-                                        }
-                                    </ListItemWrapper>
-                                </ListItem>
-                            ))
-                        }
-                    </UList>
-                </Content>
-            </Wrapper>
-        )}
-    </EditContext.Consumer>
-)
+    return (
+        <Wrapper>
+            <Header>
+                <Title>
+                    {props.title}
+                </Title>
+            </Header>
+
+            <Content>
+                <UList>
+                    {
+                        items.map((item, key)=> (
+                            <ListItem key={key}>
+                                <ListItemWrapper>
+                                    <Link to={`/${props.type}/${item.id}`} >
+                                        {item.name}
+                                    </Link>
+                                </ListItemWrapper>
+                            </ListItem>
+                        ))
+                    }
+                </UList>
+            </Content>
+        </Wrapper>
+    )
+}
 
 
 Widget.propTypes = {

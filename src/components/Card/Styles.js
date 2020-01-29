@@ -18,7 +18,6 @@ export const NavLink = styled(Link)`
 
 export const ImgWrapper = styled.div`
     flex-basis: 25%;
-    background-color: #ddd;
     height: 150px;
     overflow:hidden;
     position: relative;
@@ -35,6 +34,7 @@ export const Content = styled.section`
 `
 
 export const TitleWrapper = styled.div`
+    position: relative;
     display: flex;
     justify-content: space-between;
     min-height: 20px;
@@ -54,6 +54,7 @@ export const EditImg = styled.img`
 `
 
 export const DescriptionWrapper = styled.div`
+    position: relative;
     min-height: 40px;
     width: 100%;
 `

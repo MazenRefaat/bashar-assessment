@@ -17,3 +17,15 @@ export async function BooksService({limit}) {
         }
     })
 }
+
+
+export async function FetchBookDetailsService(id){
+    return await axios({
+        url: `${API_ROOT}${BOOKS.URL}.json`,
+        method: 'GET',
+        params: {
+            'orderBy': '"id"',
+            'equalTo': `"${id}"`
+        }
+    })
+}

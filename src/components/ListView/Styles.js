@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { darkBlueColor} from '../../styles/Colors';
 
 export const Wrapper = styled.section`
+    width: 100%;
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
     border: 1px solid ${darkBlueColor};

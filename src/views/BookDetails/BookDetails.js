@@ -26,10 +26,10 @@ const BookDetails = (props) => {
         }).catch(e => {
             console.log('error', e)
         })
-    },[])
+    },[id])
 
     return(
-        <EditContext>
+        <EditContext.Consumer>
         {({editMode}) => (
             <Content>
                 <InfoImgWrapper>
@@ -143,8 +143,7 @@ const BookDetails = (props) => {
             </Content>
             )
         }
-    
-        </EditContext>
+        </EditContext.Consumer>
     )
 }
 

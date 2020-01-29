@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from 'react';
-import { Wrapper, Img } from './Styles';
+import { Img } from './Styles';
 import bookImg from '../../assets/book_fallback.png';
 import { SkeletonWrapper } from '../../styles/Styles';
 

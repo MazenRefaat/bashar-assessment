@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Wrapper, Header, Title, Content, CardWrapper } from './Styles';
 import Card from '../Card/Card';
@@ -10,25 +10,28 @@ import Card from '../Card/Card';
 * @param {object} props props data to be rendered in list
 * @returns ListView component
 */
-const ListView = (props) => (
-    <Wrapper>
-        <Header>
-            <Title>
-                {props.title}
-            </Title>
-        </Header>
+const ListView = (props) => {
+    
+    return (
+        <Wrapper>
+            <Header>
+                <Title>
+                    {props.title}
+                </Title>
+            </Header>
 
-        <Content>
-            {
-                props.data.map((item, key)=> (
-                    <CardWrapper key={key}>
-                        <Card type='book' item={item} key={key}/>
-                    </CardWrapper>
-                ))
-            }
-        </Content>
-    </Wrapper>
-)
+            <Content>
+                {
+                    props.data.map((item, key)=> (
+                        <CardWrapper key={key}>
+                            <Card type='book' item={item} key={key}/>
+                        </CardWrapper>
+                    ))
+                }
+            </Content>
+        </Wrapper>
+    )
+}
 
 
 ListView.propTypes = {

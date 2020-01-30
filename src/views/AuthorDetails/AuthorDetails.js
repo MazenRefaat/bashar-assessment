@@ -23,8 +23,12 @@ const AuthorDetails = (props) => {
     useEffect(()=> {
         setIsLoading(true);
         FetchAuthorService(id).then(async (res) => {
-            setIsLoading(false);
-            setAuthor(Object.values(res.data)[0])
+            if(Object.keys(res.data).length === 0){
+                props.history.push('/404');
+            } else {
+                setIsLoading(false);
+                setAuthor(Object.values(res.data)[0])
+            }
         })
         .catch(e => {
             console.log('error', e)
@@ -37,7 +41,7 @@ const AuthorDetails = (props) => {
         .catch(e => {
             console.log('error', e)
         })
-    },[id])
+    },[id, props])
 
 
     return(

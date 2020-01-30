@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import Header from './components/Header/Header';
 import Book from './views/Book/Book';
 import { Main, Aside, WidgetWrapper, RoutesWrapper } from './Styles';
@@ -7,6 +7,8 @@ import Widget from './components/Widget/Widget';
 import BookDetails from './views/BookDetails/BookDetails';
 import AuthorDetails from './views/AuthorDetails/AuthorDetails';
 import CategoryDetails from './views/CategoryDetails/CategoryDetails';
+import Category from './views/Category/Category';
+import NotFound from './views/NotFound/NotFound';
 
 const Home = React.lazy(() => import('./views/Home/Home'));
 
@@ -52,8 +54,12 @@ const App = () => {
                                 <Route exact path='/book/new' component={Book} />
                                 <Route exact path='/book/:id' component={BookDetails} />
                                 <Route path='/book/:id/edit' component={Book} />
-                                <Route exact path='/author/:id' component={AuthorDetails} />
+                                <Route exact path='/category/new' component={Category} />
                                 <Route path='/category/:id' component={CategoryDetails} />
+                                <Route exact path='/category/:id/edit' component={Category} />
+                                <Route exact path='/author/:id' component={AuthorDetails} />
+                                <Route path='/404' component={NotFound} />
+                                <Redirect from='*' to='/404' />
                             </Switch>
                         </RoutesWrapper>
                     </Main>

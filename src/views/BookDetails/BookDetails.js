@@ -24,16 +24,20 @@ const BookDetails = (props) => {
             setIsLoading(true);
             FetchBookDetailsService(id).then(async (res) => {
                 setIsLoading(false);
-                const category = Object.values((await getCategoryName(Object.values(res.data)[0].category)).data)[0].name;
-                const author = Object.values((await getAuthorName(Object.values(res.data)[0].author)).data)[0].name;
-                setBook({...Object.values(res.data)[0], category: category, author: author})
+                if(Object.keys(res.data).length === 0){
+                    props.history.push('/404');
+                } else {
+                    const category = Object.values((await getCategoryName(Object.values(res.data)[0].category)).data)[0].name;
+                    const author = Object.values((await getAuthorName(Object.values(res.data)[0].author)).data)[0].name;
+                    setBook({...Object.values(res.data)[0], category: category, author: author})
+                }
             })
             .catch(e => {
                 console.log('error', e)
             })
         
         
-    },[id])
+    },[id, props])
 
     // Get Category Name based on Category ID
     const getCategoryName = async (categoryId) => {

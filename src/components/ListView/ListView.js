@@ -1,8 +1,7 @@
-import React from 'react';
+import React, { useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
-import { Wrapper, Header, Title, Content, CardWrapper } from './Styles';
+import { Wrapper, Header, Title, Content, CardWrapper, PaginationList, PaginationItem } from './Styles';
 import Card from '../Card/Card';
-
 /**
 * ListView
 * @type Component
@@ -10,25 +9,47 @@ import Card from '../Card/Card';
 * @param {object} props props data to be rendered in list
 * @returns ListView component
 */
-const ListView = (props) => (
-    <Wrapper>
-        <Header>
-            <Title>
-                {props.title}
-            </Title>
-        </Header>
+const ListView = (props) => {
+    const [currentPage, setCurrentPage] = useState(1);
+    const pageSize = 5;
+    let pages = Array.from({length: props.data.length/5}, (v, k)=> k+1);
 
-        <Content>
-            {
-                props.data.map((item, key)=> (
-                    <CardWrapper key={key}>
-                        <Card type='book' item={item} key={key}/>
-                    </CardWrapper>
-                ))
-            }
-        </Content>
-    </Wrapper>
-)
+    const _handlePagination = useCallback((e, pageNum)=> {
+        e.preventDefault();
+        setCurrentPage(pageNum);
+    }, [])
+
+    return (
+        <Wrapper>
+            <Header>
+                <Title>
+                    {props.title}
+                </Title>
+            </Header>
+
+            <Content>
+                {
+                    props.data.slice(pageSize*(currentPage-1), pageSize*(currentPage-1)+ pageSize).map((item, key)=> (
+                        <CardWrapper key={key}>
+                            <Card type='book' item={item} key={key}/>
+                        </CardWrapper>
+                    ))
+                }
+            </Content>
+
+
+            <PaginationList>
+                {
+                    pages.map((item, key)=> (
+                        <PaginationItem  key={key}>
+                            <a onClick={(e)=>_handlePagination(e, item)} href='/'>{item}</a>
+                        </PaginationItem>
+                    ))
+                }
+            </PaginationList>
+        </Wrapper>
+    )
+}
 
 
 ListView.propTypes = {

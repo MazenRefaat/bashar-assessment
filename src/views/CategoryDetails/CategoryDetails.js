@@ -23,8 +23,12 @@ const CategoryDetails = (props) => {
     useEffect(()=> {
         setIsLoading(true);
         FetchCategoryService(id).then(async (res) => {
-            setIsLoading(false);
-            setCategory(Object.values(res.data)[0])
+            if(Object.keys(res.data).length === 0){
+                props.history.push('/404');
+            } else {
+                setIsLoading(false);
+                setCategory(Object.values(res.data)[0])
+            }
         })
         .catch(e => {
             console.log('error', e)
@@ -37,7 +41,7 @@ const CategoryDetails = (props) => {
         .catch(e => {
             console.log('error', e)
         })
-    },[id])
+    },[id, props])
 
 
     return(

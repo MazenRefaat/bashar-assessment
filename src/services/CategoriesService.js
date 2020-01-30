@@ -34,3 +34,17 @@ export async function FetchCategoryService(id) {
         }
     })
 }
+
+
+/**
+ * NewCategoryService
+ * @type service
+ * @returns New added category id 
+ */
+export async function NewCategoryService(payload) {
+    return await axios({
+        url: `${API_ROOT}${CATEGORIES.URL}.json`,
+        method: 'POST',
+        data: payload
+    })
+}

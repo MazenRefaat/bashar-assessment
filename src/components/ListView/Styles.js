@@ -26,3 +26,14 @@ export const Title = styled.h3`
 export const CardWrapper = styled.div`
     margin-bottom: 25px;
 `
+
+export const PaginationList = styled.ul`
+    display: flex;
+    justify-content: center;
+    margin: 25px 0;
+`
+
+export const PaginationItem= styled.li`
+    display: inline-block;
+    margin: 0 5px;
+`

@@ -12,8 +12,8 @@ export async function AuthorsService({limit}) {
         url: `${API_ROOT}${AUTHORS.URL}.json`,
         method: 'GET',
         params: {
-            'orderBy': '"name"',
-            'limitToFirst': limit
+            orderBy: '"name"',
+            ...(limit ? {limitToFirst: limit} : {}) 
         }
     })
 }

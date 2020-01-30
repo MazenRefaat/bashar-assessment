@@ -24,6 +24,7 @@ export const ImgWrapper = styled.div`
 `
 
 export const Img = styled.img`
+    position
     width: 100%;
     height: auto;
 `

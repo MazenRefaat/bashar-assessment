@@ -12,8 +12,8 @@ export async function CategoriesService({limit}) {
         url: `${API_ROOT}${CATEGORIES.URL}.json`,
         method: 'GET',
         params: {
-            'orderBy': '"name"',
-            'limitToFirst': limit
+            orderBy: '"name"',
+            ...(limit ? {limitToFirst: limit} : {}) 
         }
     })
 }

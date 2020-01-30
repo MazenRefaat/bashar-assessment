@@ -14,7 +14,7 @@ const Widget = (props) => {
     const [items, setItems] = useState([])
 
     useEffect(()=> {
-        FetchDataService({type: props.title.toLowerCase(), limit: 5}).then(res => {
+        FetchDataService({type: props.title.toLowerCase()}).then(res => {
             setItems(Object.values(res.data))
         }).catch(e => {
             console.log('error', e);

@@ -5,6 +5,7 @@ import { EditContext } from '../../App';
 import editIcon from '../../assets/edit_icon.svg';
 import { Link } from 'react-router-dom';
 import Image from '../Image/Image';
+import PropTypes from 'prop-types';
 
 /**
 * Card
@@ -70,6 +71,11 @@ const Card = (props) => {
             )}
         </EditContext.Consumer>
     )
+}
+
+Card.propTypes = {
+    item: PropTypes.object,
+    type: PropTypes.string
 }
 
 export default Card;

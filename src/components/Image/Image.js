@@ -24,21 +24,23 @@ const Image = (props) => {
 
     return(
         <React.Fragment>
-            <Img
-                src={imgStatus === 'loadError' ? bookImg : props.src } 
-                title={props.title} 
-                alt={props.title} 
-                onError={
-                    () => _handleStatusChange('loadError')
-                }
-                onLoad={
-                    () => _handleStatusChange('loaded')
-                }
-            /> 
+            
             {
                 imgStatus === 'loading'
-                &&
+                ?
                 <SkeletonWrapper />
+                :
+                <Img
+                    src={imgStatus === 'loadError' ? bookImg : props.src } 
+                    title={props.title} 
+                    alt={props.title} 
+                    onError={
+                        () => _handleStatusChange('loadError')
+                    }
+                    onLoad={
+                        () => _handleStatusChange('loaded')
+                    }
+                /> 
             }
         </React.Fragment>
     )

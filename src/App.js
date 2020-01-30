@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Header from './components/Header/Header';
-import EditBook from './views/EditBook/EditBook';
+import Book from './views/Book/Book';
 import EditCategory from './views/EditCategory/EditCategory';
 import { Main, Aside, WidgetWrapper, RoutesWrapper } from './Styles';
 import Widget from './components/Widget/Widget';
@@ -48,8 +48,9 @@ const App = () => {
                         <RoutesWrapper>
                             <Switch>
                                 <Route exact path='/' component={Home} />
+                                <Route exact path='/book/new' component={Book} />
                                 <Route exact path='/book/:id' component={BookDetails} />
-                                <Route path='/book/:id/edit' component={EditBook} />
+                                <Route path='/book/:id/edit' component={Book} />
                                 <Route path='/category/:id/edit' component={EditCategory} />
                             </Switch>
                         </RoutesWrapper>

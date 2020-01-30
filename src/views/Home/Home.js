@@ -13,7 +13,7 @@ import ListView from '../../components/ListView/ListView';
 const Home = () => {
     const [books, setBooks] = useState([]);
     useEffect(()=> {
-        BooksService({limit: 10}).then(data => {
+        BooksService({limit: 20}).then(data => {
             setBooks(Object.values(data.data));
         }).catch(e => {
             console.log('error', e)

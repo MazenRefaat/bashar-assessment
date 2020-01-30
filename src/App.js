@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Header from './components/Header/Header';
 import Book from './views/Book/Book';
-import EditCategory from './views/EditCategory/EditCategory';
 import { Main, Aside, WidgetWrapper, RoutesWrapper } from './Styles';
 import Widget from './components/Widget/Widget';
 import BookDetails from './views/BookDetails/BookDetails';
+import AuthorDetails from './views/AuthorDetails/AuthorDetails';
+import CategoryDetails from './views/CategoryDetails/CategoryDetails';
 
 const Home = React.lazy(() => import('./views/Home/Home'));
 
@@ -51,7 +52,8 @@ const App = () => {
                                 <Route exact path='/book/new' component={Book} />
                                 <Route exact path='/book/:id' component={BookDetails} />
                                 <Route path='/book/:id/edit' component={Book} />
-                                <Route path='/category/:id/edit' component={EditCategory} />
+                                <Route exact path='/author/:id' component={AuthorDetails} />
+                                <Route path='/category/:id' component={CategoryDetails} />
                             </Switch>
                         </RoutesWrapper>
                     </Main>

@@ -12,8 +12,44 @@ export async function BooksService({limit}) {
         url: `${API_ROOT}${BOOKS.URL}.json`,
         method: 'GET',
         params: {
-            'orderBy': '"title"',
-            'limitToFirst': limit
+            orderBy: '"title"',
+            limitToFirst: limit
+        }
+    })
+}
+
+
+/**
+ * FetchBooksByAuthorService
+ * @type service
+ * @returns fetch all available Books by specific Author
+ */
+
+export async function FetchBooksByAuthorService({id}) {
+    return await axios({
+        url: `${API_ROOT}${BOOKS.URL}.json`,
+        method: 'GET',
+        params: {
+            orderBy: '"author"',
+            equalTo: `"${id}"`
+        }
+    })
+}
+
+
+/**
+ * FetchBooksByCategoryService
+ * @type service
+ * @returns fetch all available Books by specific Category
+ */
+
+export async function FetchBooksByCategoryService({id}) {
+    return await axios({
+        url: `${API_ROOT}${BOOKS.URL}.json`,
+        method: 'GET',
+        params: {
+            orderBy: '"category"',
+            equalTo: `"${id}"`
         }
     })
 }

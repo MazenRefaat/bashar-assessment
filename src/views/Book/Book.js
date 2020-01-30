@@ -77,14 +77,12 @@ const Book = (props) => {
             })
         }
         CategoriesService({}).then(res => {
-            console.log('categories', res)
             setCategories(res.data);
         }).catch(e => {
             console.log('error', e)
         })
 
         AuthorsService({}).then(res => {
-            console.log('authors', res)
             setAuthors(res.data);
         }).catch(e => {
             console.log('error', e)

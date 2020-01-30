@@ -28,8 +28,8 @@ export async function FetchBookDetailsService(id){
         url: `${API_ROOT}${BOOKS.URL}.json`,
         method: 'GET',
         params: {
-            'orderBy': '"id"',
-            'equalTo': `"${id}"`
+            orderBy: '"id"',
+            equalTo: `"${id}"`
         }
     })
 }

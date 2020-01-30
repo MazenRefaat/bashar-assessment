@@ -48,6 +48,7 @@ export const Label = styled.p`
     font-size: 16px;
     font-weight: bold;
     margin-right: 5px;
+    flex-shrink: 0;
 `
 
 export const ImgWrapper = styled.div`

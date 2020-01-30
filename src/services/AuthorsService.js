@@ -17,3 +17,20 @@ export async function AuthorsService({limit}) {
         }
     })
 }
+
+/**
+ * FetchAuthorService
+ * @type service
+ * @returns fetch Author of given Id
+ */
+
+export async function FetchAuthorService(id) {
+    return await axios({
+        url: `${API_ROOT}${AUTHORS.URL}.json`,
+        method: 'GET',
+        params: {
+            orderBy: '"id"',
+            equalTo: `"${id}"`
+        }
+    })
+}

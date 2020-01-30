@@ -17,3 +17,20 @@ export async function CategoriesService({limit}) {
         }
     })
 }
+
+/**
+ * FetchCategoryService
+ * @type service
+ * @returns fetch category of given Id
+ */
+
+export async function FetchCategoryService(id) {
+    return await axios({
+        url: `${API_ROOT}${CATEGORIES.URL}.json`,
+        method: 'GET',
+        params: {
+            orderBy: '"id"',
+            equalTo: `"${id}"`
+        }
+    })
+}

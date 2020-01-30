@@ -6,6 +6,8 @@ import Image from '../../components/Image/Image';
 import { EditContext } from '../../App';
 import { Link } from 'react-router-dom';
 import editIcon from '../../assets/edit_icon.svg';
+import { FetchCategoryService } from '../../services/CategoriesService';
+import { FetchAuthorService } from '../../services/AuthorsService';
 
 /**
 * BookDetails
@@ -19,14 +21,31 @@ const BookDetails = (props) => {
     const [isLoading, setIsLoading] = useState(false);
     const { id } = props.match.params;
     useEffect(()=> {
-        setIsLoading(true);
-        FetchBookDetailsService(id).then(res => {
-            setIsLoading(false);
-            setBook(Object.values(res.data)[0])
-        }).catch(e => {
-            console.log('error', e)
-        })
+            setIsLoading(true);
+            FetchBookDetailsService(id).then(async (res) => {
+                setIsLoading(false);
+                const category = Object.values((await getCategoryName(Object.values(res.data)[0].category)).data)[0].name;
+                const author = Object.values((await getAuthorName(Object.values(res.data)[0].author)).data)[0].name;
+                setBook({...Object.values(res.data)[0], category: category, author: author})
+            })
+            .catch(e => {
+                console.log('error', e)
+            })
+        
+        
     },[id])
+
+    // Get Category Name based on Category ID
+    const getCategoryName = async (categoryId) => {
+        let categoryName = await FetchCategoryService(categoryId)
+        return categoryName;
+    }
+
+    // Get Author Name based on Author ID
+    const getAuthorName = async (authorId) => {
+        let authorName = await FetchAuthorService(authorId)
+        return authorName;
+    }
 
     return(
         <EditContext.Consumer>

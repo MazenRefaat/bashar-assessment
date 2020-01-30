@@ -13,7 +13,7 @@ export async function BooksService({limit}) {
         method: 'GET',
         params: {
             orderBy: '"title"',
-            limitToFirst: limit
+            ...(limit ? {limitToFirst: limit} : {}) 
         }
     })
 }

@@ -15,7 +15,7 @@ const Home = () => {
     const [sortedBooks, setSortedBooks] = useState([]);
 
     useEffect(()=> {
-        BooksService({limit: 20}).then(data => {
+        BooksService({}).then(data => {
             setBooks(Object.values(data.data));
             setSortedBooks(Object.values(data.data));
         }).catch(e => {

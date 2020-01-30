@@ -7,11 +7,12 @@ import axios from "axios";
  * @param {string} url API endpoint used for call
  * @param {string} method method used for API call 
  */
-const axios_fetch = async ({url, method, params}) => {
+const axios_fetch = async ({url, method, params, data}) => {
     let response = await axios({
         url: url,
         method: method,
-        params: params
+        params: params,
+        data: data
     })
 
     if(response.statusText === 'OK')

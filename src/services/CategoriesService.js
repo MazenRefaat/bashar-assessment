@@ -12,8 +12,25 @@ export async function CategoriesService({limit}) {
         url: `${API_ROOT}${CATEGORIES.URL}.json`,
         method: 'GET',
         params: {
-            'orderBy': '"name"',
-            'limitToFirst': limit
+            orderBy: '"name"',
+            ...(limit ? {limitToFirst: limit} : {}) 
+        }
+    })
+}
+
+/**
+ * FetchCategoryService
+ * @type service
+ * @returns fetch category of given Id
+ */
+
+export async function FetchCategoryService(id) {
+    return await axios({
+        url: `${API_ROOT}${CATEGORIES.URL}.json`,
+        method: 'GET',
+        params: {
+            orderBy: '"id"',
+            equalTo: `"${id}"`
         }
     })
 }
